@@ -9,12 +9,12 @@ class PriceControl:
         self.name = name
     
     def __set__(self, instance, value):
-        try:
+        # try:
             if not 0 <= value <= 100:
                 raise ValueError(f"Price must be between 0 and 100.")
             instance.__dict__[self.name] = value
-        except ValueError as ve:
-            print(ve)
+        # except ValueError as ve:
+        #     print(ve)
 
 class NameControl:
     """
@@ -24,14 +24,14 @@ class NameControl:
         self.name = name
         self.count_exp_date = 0
     def __set__(self, instance, value):
-        try:
+        # try:
             if hasattr(instance, self.name) and self.count_exp_date>=1:
                 raise ValueError(f"{self.name.capitalize()} can not be changed.")
             if hasattr(instance, self.name): 
                 self.count_exp_date+=1 
                 instance.__dict__[self.name] = value
-        except ValueError as ve:
-            print(ve)
+        # except ValueError as ve:
+        #     print(ve)
 
 class Book:
     author = NameControl()
